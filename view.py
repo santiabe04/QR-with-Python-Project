@@ -1,9 +1,10 @@
 '''View Code -- Santiago Abelle'''
-from tkinter import * #Import graphic UI library
+from tkinter import *
 
 class View():
     def __init__(self):
         '''Is the initiation from the class'''
+        self.entries = []
         self.root = Tk() #Creates a new tkinter object
     
     # def write_screen(self,messageList,buttonState):
@@ -22,23 +23,23 @@ class View():
 
     #     self.root.mainloop() #Runs the main loop from tkinter
 
-    def login_screen(self,buttonState):
-        '''TEST -- Writes in login screen'''
-        labelLogIn = Label(self.root, text = "Log In").grid(row = 0, column = 0)
-        entryUsername = Entry(self.root, bg = "#d7cac7", fg = "#000000").grid(row = 1, column = 2)
-        labelUsername = Label(self.root, text = "Username" + entryUsername.get()).grid(row = 1, column = 1)
-        entryPassword = Entry(self.root, bg = "#d7cac7", fg = "#000000").grid(row = 2, column = 2)
-        labelPassword = Label(self.root, text = "Password" + entryPassword.get()).grid(row = 2, column = 1)
-
-        entries = [entryUsername.get(), entryPassword.get()]
-
-        myButton = Button(self.root, text = "Log In", state = buttonState, command = self.button_click(entries), bg = "#d7cac7")
-        myButton.grid()
-
-        self.root.mainloop() #Runs the main loop from tkinter
-
-    def button_click(self, entries):
+    def button_click(self):
         '''When a button is pressed it's triggered'''
         print("Button Clicked")
-        print(entries[0])
-        print(entries[1])
+        print(self.entryUsername.get())
+        print(self.entryPassword.get())
+
+    def login_screen(self,buttonState):
+        '''TEST -- Writes in login screen'''
+        labelLogIn = Label(self.root, text = "Log In").pack()
+        labelUsername = Label(self.root, text = "Username").pack()
+        self.entryUsername = Entry(self.root, bg = "#d7cac7", fg = "#000000")
+        self.entryUsername.pack()
+        labelPassword = Label(self.root, text = "Password").pack()
+        self.entryPassword = Entry(self.root, bg = "#d7cac7", fg = "#000000")
+        self.entryPassword.pack()
+
+        myButton = Button(self.root, text = "Log In", state = buttonState, command = self.button_click(), bg = "#d7cac7")
+        myButton.pack()
+
+        self.root.mainloop() #Runs the main loop from tkinter
